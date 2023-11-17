@@ -8,6 +8,7 @@ const initialState = {
     selectId: ''
 }
 
+// Создание асинхронного thunk для получения данных о персонале
 export const fetchPersonal = createAsyncThunk(
     'personal/fetchPersonal',
     async () => {
@@ -20,9 +21,11 @@ const personalSlice = createSlice({
     name: 'personal',
     initialState,
     reducers: {
+        // Редуктор для изменения смещения (offset)
         changeOffset: (state, action) => {
             state.offset = action.payload
         },
+        // Редуктор для изменения выбранного элемента
         changeSelect: (state, action) => {
             console.log(action.payload);
             state.selectId = action.payload
@@ -30,6 +33,7 @@ const personalSlice = createSlice({
 
     },
     extraReducers: (builder) => {
+        // Обработка различных состояний запроса данных во время использования createAsyncThunk
         builder
             .addCase(fetchPersonal.pending, state => { state.status = 'loading' })
             .addCase(fetchPersonal.fulfilled, (state, action) => {

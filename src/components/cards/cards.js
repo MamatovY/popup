@@ -7,6 +7,8 @@ import { AnimatePresence } from 'framer-motion'
 
 const Cards = () => {
     const { personal, status, offset } = useSelector(state => state.personal)
+
+    // Локальное состояние для отслеживания завершения загрузки данных
     const [finish, setFinish] = useState(false)
     const dispatch = useDispatch()
 
@@ -14,9 +16,13 @@ const Cards = () => {
         dispatch(fetchPersonal())
     }, [])
 
+    // Обработчик события для кнопки "Load more..."
     const handleMore = e => {
         e.preventDefault()
+        // Отправка экшена для изменения смещения (offset) и загрузки дополнительных данных
         dispatch(changeOffset(offset + 4))
+
+        // Установка состояния finish в true, если достигнут конец списка
         if (offset + 4 >= personal.length) {
             setFinish(true)
         }
@@ -24,6 +30,7 @@ const Cards = () => {
 
     return (
         <div className='cards container'>
+            {/* Показываем индикатор загрузки, если данные загружаются */}
             {status === 'loading' ?
                 <div className='cards__loading'>
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
@@ -34,8 +41,10 @@ const Cards = () => {
                     </svg>
                 </div>
                 :
+                // Если данных нет, выводим сообщение что не данных
                 personal.length < 1 ? <h2 className='cards__loading'>There's no data.</h2>
                     :
+                    // Выводим список карточек и кнопку "Load more..."
                     <>
                         <div className="cards__items">
                             <AnimatePresence mode='wait'>
@@ -49,6 +58,7 @@ const Cards = () => {
                                 }
                             </AnimatePresence>
                         </div>
+                        {/* Выводим кнопку "Load more..." если список не завершен */}
                         {finish || <a onClick={handleMore} className='cards__more' href="#">Load more...</a>}
                     </>
 

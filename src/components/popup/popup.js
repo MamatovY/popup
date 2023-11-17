@@ -5,15 +5,17 @@ import { motion } from 'framer-motion'
 
 const Popup = () => {
     const { selectId, personal } = useSelector(state => state.personal)
+
+    // Поиск элемента в массиве персонала по идентификатору selectId
     const item = personal.find(item => item.id === selectId);
 
-    console.log(selectId);
-    console.log(item);
     const dispatch = useDispatch()
+
+    // Обработчик события для закрытия всплывающего окна
     const handleClose = () => dispatch(changeSelect(''))
     return (<>
-        {
-            selectId &&
+        {/* Показываем всплывающее окно только если есть выбранный элемент */}
+        {selectId &&
             <div className='popup'>
                 <motion.div
                     initial={{ y: 100 }}
@@ -41,6 +43,7 @@ const Popup = () => {
                             <span>about:</span> {item.about}
                         </div>
                     </div>
+                    {/* Кнопка для закрытия всплывающего окна */}
                     <div onClick={handleClose} className="popup__close">
                         <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 60 60" fill="none">
                             <rect width="60" height="60" rx="20" fill="#EB5757" />
@@ -48,6 +51,8 @@ const Popup = () => {
                         </svg>
                     </div>
                 </motion.div>
+
+                {/* Затемненный фон для закрытия всплывающего окна по клику вне его области */}
                 <motion.div
                     onClick={handleClose}
                     className="popup__bg"></motion.div>

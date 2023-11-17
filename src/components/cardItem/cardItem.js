@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 
 const CardItem = ({ name, picture, email, _id }) => {
     const dispatch = useDispatch()
+    // Обработчик события клика по карточке, который отправляет экшен для изменения выбранного элемента
     const handleClick = (_id) => {
         dispatch(changeSelect(_id))
     }
