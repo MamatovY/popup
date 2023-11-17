@@ -1,6 +1,7 @@
 import { useDispatch } from 'react-redux';
 import './cardItem.scss'
 import { changeSelect } from 'store/personalSlice';
+import { motion } from 'framer-motion';
 
 const CardItem = ({ name, picture, email, id }) => {
     const dispatch = useDispatch()
@@ -9,7 +10,13 @@ const CardItem = ({ name, picture, email, id }) => {
     }
 
     return (
-        <div onClick={() => handleClick(id)} className='cardItem'>
+        <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.7 }}
+            onClick={() => handleClick(id)}
+            className='cardItem'>
             <div className="cardItem__img">
                 <img src='https://ichef.bbci.co.uk/news/640/cpsprodpb/1352A/production/_103464197_luke-watkin.gif' alt={name} />
             </div>
@@ -21,7 +28,7 @@ const CardItem = ({ name, picture, email, id }) => {
                     <span>email:</span> {email}
                 </div>
             </div>
-        </div>
+        </motion.div>
     )
 }
 

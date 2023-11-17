@@ -11,7 +11,7 @@
         border: 1px solid rgba(0, 0, 0, 0.34);
         background: #3D7298;
         box-shadow: 0px 4px 47px 0px rgba(0, 0, 0, 0.25);
-        padding: 20px 0;
+        padding: 10px 0;
         display: block;
         width: 27.083333%;
         margin: 0 auto;
@@ -20,17 +20,21 @@
         margin-top: 100px;
         text-decoration: none;
     }
+
+    &__loading {
+        text-align: center;
+    }
 }
 
 
-@media (max-width:1536px) {
+@media (min-width:1536px) {
     .cards {
         &__items {
             gap: 40px;
         }
 
         &__more {
-            padding: 10px 0;
+            padding: 20px 0;
         }
     }
 }

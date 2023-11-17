@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
 import { changeOffset, fetchPersonal } from 'store/personalSlice'
 import CardItem from 'components/cardItem'
+import { AnimatePresence } from 'framer-motion'
 
 const Cards = () => {
     const { personal, status, offset } = useSelector(state => state.personal)
@@ -23,23 +24,26 @@ const Cards = () => {
 
     return (
         <div className='cards container'>
-
-            <div className="cards__items">
-                {
-                    status === 'loading' ?
-                        <h2>Loading...</h2>
-                        :
-                        personal.map((item, i) => {
-                            if (i >= offset) return null
-                            return (
-                                <CardItem key={item.id} {...item} />
-                            )
-                        })
-                }
-            </div>
-
-            {
-                finish || <a onClick={handleMore} className='cards__more' href="#">Load more...</a>
+            {status === 'loading' ?
+                <h2 className='cards__loading'>Loading...</h2>
+                :
+                <>
+                    <div className="cards__items">
+                        <AnimatePresence mode='wait'>
+                            {
+                                personal.map((item, i) => {
+                                    if (i >= offset) return null
+                                    return (
+                                        <CardItem key={item.id} {...item} />
+                                    )
+                                })
+                            }
+                        </AnimatePresence>
+                    </div>
+                    {
+                        finish || <a onClick={handleMore} className='cards__more' href="#">Load more...</a>
+                    }
+                </>
             }
 
         </div>
