@@ -11,7 +11,7 @@ const initialState = {
 export const fetchPersonal = createAsyncThunk(
     'personal/fetchPersonal',
     async () => {
-        const res = await axios.get(`https://jsonplaceholder.typicode.com/users`)
+        const res = await axios.get(`https://layout.solvintech.ru/nuxt/api/`)
         return res.data
     }
 )

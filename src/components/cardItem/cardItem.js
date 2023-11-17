@@ -3,10 +3,10 @@ import './cardItem.scss'
 import { changeSelect } from 'store/personalSlice';
 import { motion } from 'framer-motion';
 
-const CardItem = ({ name, picture, email, id }) => {
+const CardItem = ({ name, picture, email, _id }) => {
     const dispatch = useDispatch()
-    const handleClick = (id) => {
-        dispatch(changeSelect(id))
+    const handleClick = (_id) => {
+        dispatch(changeSelect(_id))
     }
 
     return (
@@ -15,10 +15,10 @@ const CardItem = ({ name, picture, email, id }) => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.7 }}
-            onClick={() => handleClick(id)}
+            onClick={() => handleClick(_id)}
             className='cardItem'>
             <div className="cardItem__img">
-                <img src='https://ichef.bbci.co.uk/news/640/cpsprodpb/1352A/production/_103464197_luke-watkin.gif' alt={name} />
+                <img src={picture} alt={name} />
             </div>
             <div className="cardItem__content">
                 <div className="cardItem__text">
