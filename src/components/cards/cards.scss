@@ -21,3 +21,40 @@
         text-decoration: none;
     }
 }
+
+
+@media (max-width:1536px) {
+    .cards {
+        &__items {
+            gap: 40px;
+        }
+
+        &__more {
+            padding: 10px 0;
+        }
+    }
+}
+
+@media (max-width:768px) {
+    .cards {
+        &__items {
+            gap: 20px;
+        }
+
+        &__more {
+            margin-top: 50px;
+            width: 40%;
+        }
+    }
+}
+
+
+@media (max-width:425px) {
+    .cards {
+
+        &__more {
+            margin-top: 50px;
+            width: 50%;
+        }
+    }
+}

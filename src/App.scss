@@ -4,6 +4,19 @@
   font-size: 21px;
 }
 
+@media (max-width: 1024px) {
+  .App {
+    font-size: 17px;
+  }
+}
+
+@media (max-width: 640px) {
+  .App {
+    font-size: 11px;
+  }
+}
+
+
 
 .container {
   width: 100%;
@@ -12,6 +25,7 @@
 }
 
 @media (min-width: 1024px) {
+
   .container {
     max-width: 1024px;
   }
